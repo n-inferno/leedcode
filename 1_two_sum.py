@@ -10,21 +10,6 @@ class Solution:
                 if nums[i] + nums[j] == target:
                     return [i, j]
 
-    #
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        nums.sort()
-        i = len(nums) - 1
-        while nums[i] > target:
-            i -= 1
-        j = 0
-        while nums[i] + nums[j] != target:
-            if nums[i] + nums[j] > target:
-                i -= 1
-            else:
-                j += 1
-
-        return [j, i]
-
 
 if __name__ == '__main__':
     solution = Solution()
