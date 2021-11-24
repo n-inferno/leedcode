@@ -39,3 +39,4 @@ if __name__ == '__main__':
     solution = Solution()
     assert solution.findShortestSubArray(nums=[1, 2, 2, 3, 1]) == 2
     assert solution.findShortestSubArray(nums=[1, 2, 2, 3, 1, 4, 2]) == 6
+    assert solution.findShortestSubArray(nums=[1]) == 1
