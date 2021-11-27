@@ -33,16 +33,16 @@ class Solution:
 
     # O(n) without division
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        product = [1]
+        result = [1]
         for i in range(1, len(nums)):
-            product.append(product[i - 1] * nums[i - 1])
+            result.append(result[i - 1] * nums[i - 1])
 
-        p = 1
+        product = 1
         for i in range(len(nums) - 1, -1, -1):
-            product[i] *= p
-            p *= nums[i]
+            result[i] *= product
+            product *= nums[i]
 
-        return product
+        return result
 
 
 if __name__ == '__main__':
