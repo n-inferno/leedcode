@@ -5,12 +5,12 @@ from typing import List
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         first, last = 0, len(nums) - 1
-        while last > first + 1:
+        while last > first:
             mid = first + (last - first) // 2
             if nums[mid] > target:
-                last = mid
+                last = mid - 1
             elif nums[mid] < target:
-                first = mid
+                first = mid + 1
             else:
                 return mid
         if nums[last] < target:
