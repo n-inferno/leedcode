@@ -14,7 +14,7 @@ def to_list(head):
 
 
 def to_linked_list(lst):
-    if len(lst) <= 1:
+    if len(lst) < 1:
         return ListNode()
     head = node = ListNode(lst[0])
     for i in range(1, len(lst)):
