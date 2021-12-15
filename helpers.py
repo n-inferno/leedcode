@@ -8,7 +8,7 @@ def to_list(head):
     node = head
     lst = []
     while node:
-        lst.append(node.val) if node.val else None
+        lst.append(node.val) if node else None
         node = node.next
     return lst
 
