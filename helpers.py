@@ -22,3 +22,10 @@ def to_linked_list(lst):
         node = node.next
 
     return head
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
