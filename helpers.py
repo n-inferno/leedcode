@@ -3,6 +3,9 @@ class ListNode:
         self.val = val
         self.next = next
 
+    def __repr__(self):
+        return str(to_list(self))
+
 
 def to_list(head):
     node = head
