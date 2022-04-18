@@ -6,18 +6,23 @@ from helpers import ListNode, to_list, to_linked_list
 
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        result_node = result = None
+        result = track = None
 
-        def helper(head):
-            nonlocal result_node, result
-            if not head:
+        def helper(node):
+            nonlocal result, track
+
+            if not node:
                 return
-            helper(head.next)
-            if not result_node:
-                result_node = result = ListNode(head.val)
-            else:
-                result_node.next = ListNode(head.val)
-                result_node = result_node.next
+
+            helper(node.next)
+            if not result:
+                result = track = ListNode()
+            track.val = node.val
+
+            if node != head:
+                track.next = ListNode()
+
+            track = track.next
 
         helper(head)
         return result
