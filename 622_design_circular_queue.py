@@ -42,12 +42,12 @@ class MyCircularQueue:
         return True
 
     def Front(self) -> int:
-        if self.head is None or self.queue[self.head] is None:
+        if self.isEmpty():
             return -1
         return self.queue[self.head]
 
     def Rear(self) -> int:
-        if self.tail is None or self.queue[self.tail] is None:
+        if self.isEmpty():
             return -1
         return self.queue[self.tail]
 
