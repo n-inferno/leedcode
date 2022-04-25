@@ -23,16 +23,21 @@ class Iterator:
 
 class PeekingIterator:
     def __init__(self, iterator: Iterator):
-        self.next_value = iterator.next() if iterator.hasNext() else None
+        self.peeked = False
+        self.next_value = None
         self.iterator = iterator
 
     def peek(self):
+        if not self.peeked:
+            self.next_value = self.iterator.next()
+            self.peeked = True
         return self.next_value
 
     def next(self):
-        tmp = self.next_value
-        self.next_value = self.iterator.next() if self.iterator.hasNext() else None
-        return tmp
+        if self.peeked:
+            self.peeked = False
+            return self.next_value
+        return self.iterator.next()
 
     def hasNext(self):
-        return self.next_value is not None
+        return self.peeked or self.iterator.hasNext()
