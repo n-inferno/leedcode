@@ -1,5 +1,4 @@
 # https://leetcode.com/problems/powx-n/
-from operator import mul
 
 
 class Solution:
@@ -9,11 +8,10 @@ class Solution:
         def helper(x, n):
             if n == 0 or x == 1:
                 return 1
-            if n == 0:
-                return 1
 
-            r = helper(x * x, n // 2)
-            return x * r if n % 2 else r
+            if n % 2 == 0:
+                return helper(x * x, n // 2)
+            return helper(x, n - 1) * x
 
         result = helper(x, abs(n))
 
