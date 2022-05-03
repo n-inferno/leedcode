@@ -3,6 +3,7 @@ from typing import List
 
 
 class Solution:
+    # todo need optimisation to meet the requirements
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
         counter = 0
 
@@ -18,7 +19,6 @@ class Solution:
             helper(current_sum - nums[nums_pointer], new_pointer)
 
         helper()
-        print(counter)
         return counter
 
 
