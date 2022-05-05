@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -32,3 +35,28 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+        self.parent = None
+
+        if self.left:
+            self.left.parent = self
+        if self.right:
+            self.right.parent = self
+
+    def __repr__(self):
+        return str(self.val)
+
+    def to_array_representation(self):
+        q = deque()
+        q.append(self)
+        repr = []
+
+        while q:
+            element = q.popleft()
+            repr.append(element.val) if element else repr.append(element)
+            if element:
+                q.append(element.left)
+                q.append(element.right)
+
+        while repr and repr[-1] is None:
+            repr.pop()
+        return repr
