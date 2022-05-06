@@ -5,28 +5,14 @@ from helpers import TreeNode
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        tracker = []
-        paths = {}
-
-        def helper(root):
-            if not root:
+        def search(curr):
+            if not curr:
                 return
+            if curr.val > p.val and curr.val > q.val:
+                return search(curr.left)
+            elif curr.val < p.val and curr.val < q.val:
+                return search(curr.right)
 
-            tracker.append(root)
-            if p == root:
-                paths[p] = tracker.copy()
-            elif q == root:
-                paths[q] = tracker.copy()
-            helper(root.left)
-            helper(root.right)
-            tracker.pop()
+            return curr
 
-        helper(root)
-
-        i = 0
-        while i < min(len(paths[p]), len(paths[q])):
-            if paths[p][i] != paths[q][i]:
-                return paths[p][i - 1]
-            i += 1
-
-        return paths[p][i - 1]
+        return search(root)
