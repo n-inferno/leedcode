@@ -3,8 +3,11 @@ from typing import List
 
 
 class Solution:
-    def __init__(self):
-        self.letters = {
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+            return []
+
+        letters = {
             '2': ('a', 'b', 'c'),
             '3': ('d', 'e', 'f'),
             '4': ('g', 'h', 'i'),
@@ -14,21 +17,20 @@ class Solution:
             '8': ('t', 'u', 'v'),
             '9': ('w', 'x', 'y', 'z')
         }
+        if len(digits) == 1:
+            return letters[digits[0]]
+        combinations = []
 
-    def letterCombinations(self, digits: str) -> List[str]:
-        result = set()
-
-        def helper(left_digits, curr_result):
-            if not left_digits:
-                if curr_result:
-                    result.add(curr_result)
+        def helper(current_digit, prefix):
+            if current_digit >= len(digits):
+                combinations.append("".join(prefix))
                 return
-            d = left_digits[0]
-            for variant in self.letters[d]:
-                helper(left_digits[1:], curr_result + variant)
 
-        helper(digits, '')
-        return list(result)
+            for variant in letters[digits[current_digit]]:
+                helper(current_digit + 1, [*prefix, variant])
+
+        helper(0, [])
+        return combinations
 
 
 if __name__ == '__main__':
