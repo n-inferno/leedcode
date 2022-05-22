@@ -5,8 +5,8 @@ class Solution:
     def countSubstrings(self, s: str) -> int:
         counter = 0
 
-        for i in range(len(s)):
-            l = r = i
+        def count_palindroms(l, r):
+            nonlocal counter
             while l in range(len(s)) and r in range(len(s)):
                 if not s[l] == s[r]:
                     break
@@ -15,14 +15,8 @@ class Solution:
                 r += 1
 
         for i in range(len(s)):
-            l = i
-            r = i + 1
-            while l in range(len(s)) and r in range(len(s)):
-                if not s[l] == s[r]:
-                    break
-                counter += 1
-                l -= 1
-                r += 1
+            count_palindroms(i, i)
+            count_palindroms(i, i + 1)
 
         return counter
 
