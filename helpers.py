@@ -60,3 +60,19 @@ class TreeNode:
         while repr and repr[-1] is None:
             repr.pop()
         return repr
+
+
+if __name__ == '__main__':
+    node = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4), TreeNode(5)), TreeNode(6)), TreeNode(7, TreeNode(8), TreeNode(9)))
+
+
+    def walk(node):
+        if not node:
+            return
+        walk(node.left)
+        walk(node.right)
+        print(f"Node {node.val}")
+
+
+    print(node.to_array_representation())
+    walk(node)
