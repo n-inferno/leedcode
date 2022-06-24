@@ -4,12 +4,12 @@ from typing import List
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        result, current = nums[0], 0
-        for i in range(len(nums)):
-            current += nums[i]
-            result = max(current, result)
-            current = max(current, 0)
-        return result
+        max_summa = summa = nums[0]
+        for i in range(1, len(nums)):
+            summa = max(summa + nums[i], nums[i])
+            max_summa = max(summa, max_summa)
+
+        return max_summa
 
 
 if __name__ == '__main__':
