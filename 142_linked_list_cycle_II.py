@@ -5,9 +5,24 @@ from helpers import ListNode
 
 
 class Solution:
+    # Floyd's algorithm
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        while head:
-            if hasattr(head, "visited"):
-                return head
-            head.visited = True
-            head = head.next
+        slow, fast = head, head
+
+        while fast:
+            slow = slow.next
+            fast = fast.next
+            if not fast:
+                return
+            fast = fast.next
+            if slow == fast:
+                break
+        else:
+            return
+
+        slow = head
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+
+        return slow
