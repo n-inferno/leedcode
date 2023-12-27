@@ -6,17 +6,18 @@ from typing import List
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
         stack = []
-        result = deque()
-        for t in range(len(temperatures) - 1, -1, -1):
-            while stack and stack[-1][0] <= temperatures[t]:
-                stack.pop()
-            if stack:
-                result.appendleft(stack[-1][1] - t)
-            else:
-                result.appendleft(0)
-            stack.append((temperatures[t], t))
+        results = [0] * len(temperatures)
 
-        return list(result)
+        for i in range(len(temperatures) - 1, -1, -1):
+            while stack and stack[-1][0] <= temperatures[i]:
+                stack.pop()
+
+            if stack:
+                results[i] = stack[-1][1] - i
+
+            stack.append((temperatures[i], i))
+
+        return results
 
 
 if __name__ == '__main__':
